@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  somanet-jenkins-slave-robot1-1-production:
+    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://172.20.3.14/computer/robot1-1/slave-agent.jnlp -workDir "/home/jenkins"
+    container_name: somanet-jenkins-slave-robot1-1-production
+    image: synapticon/somanet-jenkins-slave:3.27-1-alpine
+    devices:
+      - /dev/EtherCAT0:/dev/EtherCAT0
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "500m"
+    privileged: true
+    restart: always
+    volumes:
+      - jenkins-data:/home/jenkins
+      - /dev:/dev
+      - /opt/etherlab/bin/ethercat:/opt/etherlab/bin/ethercat
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  somanet-jenkins-slave-robot1-1-development:
+    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://172.20.3.14:1234/computer/robot1-1/slave-agent.jnlp -workDir "/home/jenkins"
+    container_name: somanet-jenkins-slave-robot1-1-development
+    image: synapticon/somanet-jenkins-slave:3.27-1-alpine
+    devices:
+      - /dev/EtherCAT0:/dev/EtherCAT0
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "500m"
+    privileged: true
+    restart: always
+    volumes:
+      - jenkins-data-development:/home/jenkins
+      - /dev:/dev
+      - /opt/etherlab/bin/ethercat:/opt/etherlab/bin/ethercat
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  jenkins-data:
+  jenkins-data-development:
+

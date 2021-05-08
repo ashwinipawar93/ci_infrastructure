@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  jenkins-master-production:
+    container_name: jenkins-master-production
+    environment:
+      - JENKINS_ENV=production
+    image: ashpawar/jenkins-master:latest
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "500m"
+    ports:
+      - "80:8080"
+      - "50000:50000"
+    restart: always
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  jenkins-master-development:
+    container_name: jenkins-master-development
+    environment:
+      - JENKINS_ENV=development
+    image: ashpawar/jenkins-master:latest
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "500m"
+    ports:
+      - "1234:8080"
+      - "50001:50001"
+    restart: always
+    volumes:
+      - jenkins-data-development:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  jenkins-data:
+  jenkins-data-development:
+
