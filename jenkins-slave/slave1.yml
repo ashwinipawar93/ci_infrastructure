@@ -1,8 +1,8 @@
 version: '3.7'
 services:
-  somanet-jenkins-slave-robot1-1-production:
-    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://172.20.3.14/computer/robot1-1/slave-agent.jnlp -workDir "/home/jenkins"
-    container_name: somanet-jenkins-slave-robot1-1-production
+  jenkins-slave-slave1-1-production:
+    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://192.168.0.200/computer/slave1-1/slave-agent.jnlp -workDir "/home/jenkins"
+    container_name: jenkins-slave-slave1-1-production
     image: synapticon/somanet-jenkins-slave:3.27-1-alpine
     devices:
       - /dev/EtherCAT0:/dev/EtherCAT0
@@ -19,9 +19,9 @@ services:
       - /opt/etherlab/bin/ethercat:/opt/etherlab/bin/ethercat
       - /var/run/docker.sock:/var/run/docker.sock
 
-  somanet-jenkins-slave-robot1-1-development:
-    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://172.20.3.14:1234/computer/robot1-1/slave-agent.jnlp -workDir "/home/jenkins"
-    container_name: somanet-jenkins-slave-robot1-1-development
+  jenkins-slave-slave1-1-development:
+    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://192.168.0.200:1234/computer/robot1-1/slave-agent.jnlp -workDir "/home/jenkins"
+    container_name: jenkins-slave-slave1-1-development
     image: synapticon/somanet-jenkins-slave:3.27-1-alpine
     devices:
       - /dev/EtherCAT0:/dev/EtherCAT0
