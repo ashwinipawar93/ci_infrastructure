@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   jenkins-slave-slave1-1-production:
-    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://192.168.0.200/computer/slave1-1/slave-agent.jnlp -workDir "/home/jenkins"
+    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://192.168.0.29/computer/slave1-1/slave-agent.jnlp -workDir "/home/jenkins"
     container_name: jenkins-slave-slave1-1-production
     image: synapticon/somanet-jenkins-slave:3.27-1-alpine
     devices:
@@ -20,7 +20,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   jenkins-slave-slave1-1-development:
-    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://192.168.0.200:1234/computer/robot1-1/slave-agent.jnlp -workDir "/home/jenkins"
+    command: java -jar /usr/share/jenkins/slave.jar -jnlpUrl http://192.168.0.29:1234/computer/slave1-1/slave-agent.jnlp -workDir "/home/jenkins"
     container_name: jenkins-slave-slave1-1-development
     image: synapticon/somanet-jenkins-slave:3.27-1-alpine
     devices:
